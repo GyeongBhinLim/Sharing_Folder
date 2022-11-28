@@ -3,6 +3,7 @@ package network.worker
 import org.apache.logging.log4j.scala.Logging
 import io.grpc.{ManagedChannel, ManagedChannelBuilder, StatusRuntimeException}
 import java.util.concurrent.TimeUnit
+import fragment.fragmentation
 
 import network.common.Util.getMyIpAddress
 import fragment.fragment.FragServiceGrpc.FragServiceBlockingStub
@@ -26,6 +27,9 @@ object Worker {
   }
 
   def main(args: Array[String]): Unit = {
+    ////////////////////////////////////////////
+
+    ////////////////////////////////////////////
     val masterEndpoint = args.headOption
     if (masterEndpoint.isEmpty)
       System.out.println("Master ip:port argument is empty.")
@@ -54,6 +58,10 @@ class Worker private(
   def SayHello(): Unit = {
     val request = FragRequest(name = getMyIpAddress)
     try {
+      /////////////////////////////////////////////////////
+      //val instFragment = new fragmentation()
+      //instFragment.splitFile("C:\\Users\\kbini\\Desktop\\SDproject\\grpc_test\\src\\main\\inputsrc\\genLarge")
+      /////////////////////////////////////////////////////
       val response = blockingStub.sayHello(request)
       logger.info("SendMessage: " + response.message)
     }
