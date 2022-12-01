@@ -79,24 +79,15 @@ class Master(executionContext: ExecutionContext, val numClient: Int) extends Log
   }
 
   private class FragImpl extends FragServiceGrpc.FragService {
-
-    private var totalWorkers : Int = 2
-    private var readyWorkers : Int = 0
-
     override def sayHello(req: FragRequest) = {
-      readyWorkers = readyWorkers + 1
-      logger.info(readyWorkers + "th Worker is ready : sayHello from" + req.name)
-
+      logger.info("sayHello from " + req.name)
+      val message = req.data
+      logger.info("repeated data :  ")
+      for(i <- 1 to message.length){print(message(i))}
       clientLatch.countDown()
       addNewSlave(req.name)
-      //clientLatch.await()
-
-      while(readyWorkers < totalWorkers){
-        Thread.sleep(1000)
-        //logger.info(readyWorkers + "th Worker is ready)
-      }
-
-      val reply = FragReply(message = "All workers are ready")
+      clientLatch.await()
+      val reply = FragReply(message = "Hello")
       Future.successful(reply)
     }
   }

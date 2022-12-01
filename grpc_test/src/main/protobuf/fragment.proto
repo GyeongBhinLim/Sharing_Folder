@@ -3,16 +3,15 @@ syntax = "proto3";
 package fragment;
 
 // The greeting service definition.
-service FragService { // 여기 있는 함수를 쓰겠습니다~~
+service FragService {
   // Sends a greeting
   rpc SayHello (FragRequest) returns (FragReply) {}
-  //rpc method2
 }
 
 // The request message containing the user's name.
 message FragRequest {
   string name = 1;
-  //int32 IP = 2;
+  repeated string data = 2;
 }
 
 // The response message containing the greetings

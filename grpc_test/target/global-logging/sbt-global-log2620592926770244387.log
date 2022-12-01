@@ -1,7 +1,0 @@
-[debug] > Exec(run 192.168.137.18:50051, None, None)
-[debug] Evaluating tasks: Compile / run
-[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
-[success] Total time: 17 s, completed 2022. 11. 24. 오후 4:23:32
-[debug] > Exec(idea-shell, None, None)
-[debug] > Exec(, None, None)
-[debug] > Exec(idea-shell, None, None)
