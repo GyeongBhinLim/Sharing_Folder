@@ -52,8 +52,8 @@ class Worker private(
   }
 
   def SayHello(): Unit = {
-    val wordList = List("Hello","World")
-    val request = FragRequest(name = "Hi", data = wordList)
+    val wordList = Seq("Hello","World")
+    val request = FragRequest(name = getMyIpAddress, data = wordList)
     try {
       val response = blockingStub.sayHello(request)
       logger.info("SendMessage: " + response.message)
