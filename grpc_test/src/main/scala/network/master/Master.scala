@@ -83,7 +83,7 @@ class Master(executionContext: ExecutionContext, val numClient: Int) extends Log
       logger.info("sayHello from " + req.name)
       val message = req.data
       logger.info("repeated data :  ")
-      for(i <- 1 to message.length){print(message(i))}
+      for(i <- 0 to message.length-1){logger.info(message(i))}
       clientLatch.countDown()
       addNewSlave(req.name)
       clientLatch.await()

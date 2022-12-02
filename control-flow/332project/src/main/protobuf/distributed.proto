@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package distributed;
+
+
+service Distributed{
+  rpc connectionCheck(ConnectionCheckRequest) returns (ConnectionCheckResponse) {}
+  rpc getSampleRange (SampleRequest) returns (SampleResponse) {}
+
+  rpc requestPartitionedData (PartitionedDataRequest) returns (PartitionedDataResponse) {}
+  rpc sendPartitionedData (PartitionedData) returns (IsSendingDone) {}
+
+  rpc taskDoneReport (DoneRequest) returns (DoneResponse) {}
+}
+
+//rpc ConnectionCheck
+message ConnectionCheckRequest {
+  string ipAddress = 1;
+}
+
+message ConnectionCheckResponse {
+  int32 machineID = 1;
+}
+
+//rpc getSampleRange
+message SampleRequest {
+  int32 sampleSize = 1;
+  repeated string sampleDataSequence = 2;
+}
+
+message SampleResponse {
+  repeated string rangeSequence = 1;
+}
+
+//rpc requestPartitionedData
+ message PartitionedDataRequest {
+  int32 machineNumber = 1;
+
+}
+message PartitionedDataResponse {
+  int32 sentDataSize = 1;
+  int32 totalDataSize = 2;
+  repeated string data = 3;
+}
+
+//rpc sendPartitionedData
+
+message PartitionedData{
+  int32 partitionNumber = 1;
+  int32 sentDataSize = 2;
+  int32 totalDataSize = 3;
+  repeated string data = 4;
+}
+
+message IsSendingDone{
+  bool isSendingDone = 1;
+}
+
+//rpc taskDoneReport
+message DoneRequest {
+  int32 machineID = 1;
+}
+
+message DoneResponse {
+  bool isDone = 1;
+}

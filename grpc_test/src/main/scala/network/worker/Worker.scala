@@ -3,6 +3,7 @@ package network.worker
 import org.apache.logging.log4j.scala.Logging
 import io.grpc.{ManagedChannel, ManagedChannelBuilder, StatusRuntimeException}
 import java.util.concurrent.TimeUnit
+import scala.collection.mutable.ListBuffer
 
 import network.common.Util.getMyIpAddress
 import fragment.fragment.FragServiceGrpc.FragServiceBlockingStub
@@ -52,7 +53,8 @@ class Worker private(
   }
 
   def SayHello(): Unit = {
-    val wordList = Seq("Hello","World")
+    val wordList = List("Hello","World")
+
     val request = FragRequest(name = getMyIpAddress, data = wordList)
     try {
       val response = blockingStub.sayHello(request)

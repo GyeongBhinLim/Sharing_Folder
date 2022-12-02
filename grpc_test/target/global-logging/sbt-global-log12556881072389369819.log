@@ -1,0 +1,9 @@
+[debug] > Exec(run 192.168.137.18:50051, None, None)
+[debug] Evaluating tasks: Compile / run
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 1 Scala source to C:\Users\kbini\Desktop\sharing_folder\grpc_test\target\scala-2.13\classes ...
+[info] done compiling
+[success] Total time: 33 s, completed 2022. 12. 2. 오전 4:01:02
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
